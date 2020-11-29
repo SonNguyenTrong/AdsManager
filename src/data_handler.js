@@ -7,7 +7,7 @@ roundToTwo = function(a) {
 module.exports ={
     data_insights : function(){
         var job = [];
-        FbAPI.getFbAdsCamp().then((camps) =>{
+        return FbAPI.getFbAdsCamp().then((camps) =>{
             camps.map((data) =>{
                 job = [...job,[data.name,data.status,data.daily_budget? data.daily_budget: ""]]
             })
