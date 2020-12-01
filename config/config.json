@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "admin",
+    "database": "adsManager",
+    "port": 1433,
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "admin",
+    "password": "admin",
+    "database": "adsManager_test",
+    "port": 1433,
+    "dialect": "mssql"
+  }
+}

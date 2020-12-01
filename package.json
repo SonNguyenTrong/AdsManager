@@ -11,17 +11,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "5.15.1",
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
-    "bootstrap4-toggle": "^3.6.1",  
+    "bootstrap4-toggle": "^3.6.1",
+    "chart.js": "2.9.4",
+    "datatables.net-bs4": "1.10.22",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "facebook-nodejs-business-sdk": "^9.0.0",
     "hbs": "^4.1.1",
+    "helmet": "^4.2.0",
     "jquery": "^3.5.1",
-    "mariadb": "^2.5.1",
+    "jquery.easing": "^1.4.1",
     "node-fetch": "^2.6.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "popper.js": "^1.16.1",
+    "tedious": "^9.2.1",
+    "xss-clean": "^0.1.1"
   }
 }
