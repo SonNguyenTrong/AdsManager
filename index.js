@@ -5,15 +5,14 @@ const helmet = require('helmet');
 const xss = require('xss-clean');
 const errorHandler = require('./middleware/error');
 const bodyParser = require('body-parser');
-const data = require('./src/data_handler')
 const dotenv = require('dotenv');
 const port = process.env.PORT || 3000;
 
 dotenv.config({path: "./.env"});
 const app = express();
 
-app.use(express.static('public'));
-app.use(express.static('node_modules'));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/node_modules'));
 
 //set dynamic views file
 app.set('views',path.join(__dirname,'views'));
@@ -30,7 +29,10 @@ app.use(xss());
 
 //Mount Route
 const dashboards = require('./routes/dashboard')
-app.use('/',dashboards)
+const shops = require('./routes/shop')
+app.use('/auth/',dashboards)
+app.use('/auth/shop/',shops)
+
 
 const server = app.listen(port, ()=>{
   console.log('Server is running at port '+port)

@@ -1,16 +1,16 @@
 {
   "development": {
-    "username": "admin",
-    "password": "admin",
-    "database": "adsManager",
-    "port": 1433,
-    "dialect": "mssql"
+    "username": "tsng",
+    "password": "trongson",
+    "database": "adsmanager",
+    "port": 3306,
+    "dialect": "mysql"
   },
   "test": {
-    "username": "admin",
-    "password": "admin",
-    "database": "adsManager_test",
-    "port": 1433,
-    "dialect": "mssql"
+    "username": "tsng",
+    "password": "trongson",
+    "database": "adsmanager_test",
+    "port": 3306,
+    "dialect": "mysql"
   }
 }

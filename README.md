@@ -1,23 +1,28 @@
 ## ADSMANAGER
+
 ## DB Migration Notes
 - Create migration/ model
-    - `sequelize model:generate --name name-migration --atributes a:a,b:b `
-## How to run:
+    - `$sequelize model:generate --name name-migration --atributes a:a,b:b `
+
+## Configure
 - clone our project github
-```
+
 - Install packages:  	
-```sh
-$ npm install
+    - `$ npm install`
 
-```
+- Hosting https link to localhost while not configured:  	
+    - `$ ngrok http 80`
+
+- Copy https link from above step and add to shopify app to link app with shop
+- Add your store according to the shopify(apiket, secret key) to your account
+
 - Create or config config/config.json file
-```sh
 
-```
-- change database.json to local setting(unsynchronize) and run migrate
-```sh
-$ sequelize db:migrate
+## How to run:
+- Change database.json to local setting(unsynchronize) and run migrate
+    - `$ sequelize db:migrate`
+- Seed the example data for testing (optional)
+    - `$ sequelize db:seed:all`
 
-```
-- To run the application do npm run start
-```sh
+- Run application
+    - `$ npm start`
