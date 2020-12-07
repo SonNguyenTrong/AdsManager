@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {
-    shopifyAuth, addShop, listShop, updateShop, deleteShop
+    shopifyAuth, addShop, listShop, updateShop, deleteShop, findOne
 } = require('../controller/shopify');
 
 // Todo: use middleware authen
@@ -9,44 +9,27 @@ const {
 
 router
   .route('/')
-  .get(function(req,res){
-    res.render('shop', {
-      title: 'shops',
-      data: listShop
-    })
-  })
-  .post(function(req,res){
-    addShop.then(() =>{
-      res.render('shop', {
-        title: 'shops',
-        data: listShop
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  })
-
+  .get(listShop)
+    
 router
   .route('/:id')
-  .put(function(req,res){
-    updateShop.then(() =>{
-      res.render('shop', {
-        title: 'shops',
-        data: listShop
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  })
-  .delete(function(req,res){
-    deleteShop.then(() =>{
-      res.render('shop', {
-        title: 'shops',
-        data: listShop
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  })
+  .get(findOne)
+  .post(updateShop)
+  .delete(deleteShop)
+
+router.get('/add', (req,res) =>{
+  res.render('form', {
+    title: "ADD", //page title
+    action: "/auth/shop/add", //post action for the form
+    method: "post",
+    fields: [
+      {name:'URL',type:'text',property:'required'},   
+      {name:'APIKey',type:'text',property:'required'},  
+      {name:'APISecret',type:'text',property:'required'}   
+    ]
+  });
+})
+
+router.post('/add', addShop)
 
 module.exports = router;

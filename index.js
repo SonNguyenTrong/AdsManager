@@ -1,4 +1,4 @@
-const hbs = require('hbs');
+const ejs = require('ejs');
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
@@ -6,18 +6,25 @@ const xss = require('xss-clean');
 const errorHandler = require('./middleware/error');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 3000;
 
 dotenv.config({path: "./.env"});
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/node_modules'));
 
 //set dynamic views file
 app.set('views',path.join(__dirname,'views'));
-app.set('view engine','hbs');
+app.set('view engine','ejs');
 
+// Cookie parser
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(errorHandler);
 
@@ -26,6 +33,8 @@ app.use(helmet());
 
 // prevent xss attacks
 app.use(xss());
+
+//Parse post request
 
 //Mount Route
 const dashboards = require('./routes/dashboard')

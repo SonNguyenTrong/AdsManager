@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.shop, {as: "shop", foreignKey:"shop_id"});
+      this.belongsTo(models.shopify_shop, {as: "shopify_shop", foreignKey:"shop_id"});
     }
   };
   shopify_stat.init({
@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     cost_per_purchase: DataTypes.FLOAT,
     purchase_roas: DataTypes.FLOAT,
     purchases_conversion: DataTypes.FLOAT,
+    status: DataTypes.INTEGER,
+    extradata: DataTypes.TEXT,
     created_at: {
       allowNull: false,
       type: DataTypes.DATE,

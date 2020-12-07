@@ -35,6 +35,12 @@ module.exports = {
       shop_id: {
         type: Sequelize.INTEGER
       },
+      status: {
+        type: Sequelize.INTEGER,
+      },
+      extradata: {
+        type: Sequelize.TEXT,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

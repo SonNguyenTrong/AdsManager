@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class shop extends Model {
+  class shopify_shop extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,20 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.user, {as: "user", foreignKey:"user_id"});
-      this.hasOne(models.shopify_stat, {as: "stat", foreignKey:"shop_id"})
+      this.hasMany(models.shopify_stat, {as: "stats", foreignKey:"shop_id"})
     }
   };
-  shop.init({
+  shopify_shop.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    url: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      unique: {
+        args:true,
+        msg: 'Shop already exist!'
+      }
+    },
     api_key: DataTypes.STRING,
     api_secret: DataTypes.STRING,
-    status: DataTypes.STRING,
+    status: DataTypes.INTEGER,
     created_at: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -38,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     timestamps: false,
-    modelName: 'shop',
+    modelName: 'shopify_shop',
   });
-  return shop;
+  return shopify_shop;
 };
