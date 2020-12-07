@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const jwt = require('jsonwebtoken');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -10,12 +11,41 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.shop, {as: "shops", foreignKey:"user_id"});
+      this.hasMany(models.shopify_shop, {as: "shops", foreignKey:"user_id"});
     }
+    static getSignedJwtToken = function() {
+      return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRE
+      });
+    };
   };
   user.init({
-    username: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      unique: {
+        args:true,
+        msg: 'Username already exist!'
+      }
+    },
     password: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      validate:{
+          notEmpty:{
+              args:true,
+              msg:"Email-id required"
+          },
+          isEmail:{
+              args:true,
+              msg:'Valid email-id required'
+          }
+      },
+      unique: {
+          args:true,
+          msg: 'Email address already in use!'
+      }
+    },
+    status: DataTypes.INTEGER,
     created_at: {
       allowNull: false,
       type: DataTypes.DATE,

@@ -11,7 +11,7 @@ const {
 router.get('/', (req,res) =>{
   res.render('index', {
     title: 'Dashboard',
-    data: getDashboard
+    data: getDashboard()
   })
 })
 

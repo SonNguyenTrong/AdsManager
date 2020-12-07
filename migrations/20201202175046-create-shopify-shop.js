@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('shops', {
+    await queryInterface.createTable('shopify_shops', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,7 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: {
+          args:true,
+          msg: 'Shop already exist!'
+        }
       },
       api_key: {
         type: Sequelize.STRING
@@ -18,8 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.ENUM,
-        values: ['active', 'paused', 'deleted']
+        type: Sequelize.INTEGER,
       },
       user_id :{
         type: Sequelize.INTEGER
@@ -39,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('shops');
+    await queryInterface.dropTable('shopify_shops');
   }
 };
