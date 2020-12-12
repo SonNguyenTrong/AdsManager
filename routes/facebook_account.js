@@ -10,12 +10,6 @@ const {
 router
   .route('/')
   .get(listFacebookAccount)
-    
-router
-  .route('/:id')
-  .get(findOne)
-  .post(updateFacebookAccount)
-  .delete(deleteFacebookAccount)
 
 router.get('/add', (req,res) =>{
   res.render('form', {
@@ -23,13 +17,20 @@ router.get('/add', (req,res) =>{
     action: "/facebook_account/add", //post action for the form
     method: "post",
     fields: [
-      {name:'URL',type:'text',property:'required'},   
-      {name:'APIKey',type:'text',property:'required'},  
-      {name:'APISecret',type:'text',property:'required'}   
+      {name:'email',type:'text',property:'required',label:"Email"},   
+      {name:'password',type:'text',property:'required',label:"Password"},  
+      {name:'facebookAdsAccountId',type:'text',property:'required',label:'Facebook Ads Account Id'},
+      {name:'token',type:'text',property:'required',label:'Token'}   
     ]
   });
 })
-
-router.post('/add', addFacebookAccount)
+  
+  router.post('/add', addFacebookAccount)
+    
+router
+  .route('/:id')
+  .get(findOne)
+  .post(updateFacebookAccount)
+  .delete(deleteFacebookAccount)
 
 module.exports = router;

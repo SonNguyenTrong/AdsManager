@@ -31,6 +31,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      token: {
+        type: Sequelize.STRING
+      },
       facebook_ads_account_id: {
         type: Sequelize.STRING
       },

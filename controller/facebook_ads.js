@@ -17,14 +17,24 @@ const shopifyAuth = asyncHandler(async (req, res, next) => {
 // @route   POST /facebook_ads
 // @access  Authenticate
 const addFacebookAds = asyncHandler(async (req, res, next) => {
-  console.log(req.body.URL)
   db.facebook_ads.create({
-    url: req.body.URL,
-    api_key: req.body.APIKey,
-    api_secret: req.body.APISecret,
+    facebook_account_id: req.body.facebook_account_id,
+    campaign_name: req.body.campaign_name,
+    delivery: req.body.delivery,
+    budget: req.body.budget,
+    amount_spent: req.body.amount_spent,
+    ctr: req.body.ctr,
+    cpm: req.body.cpm,
+    content_view: req.body.content_view,
+    cost_per_content_view: req.body.cost_per_content_view,
+    checkouts_initiated: req.body.checkouts_initiated,
+    cost_per_checkout_initiated: req.body.cost_per_checkout_initiated,
+    purchases: req.body.purchases,
+    cost_per_purchase: req.body.cost_per_purchase,
+    purchase_roas: req.body.purchase_roas,
+    purchases_conversion_value: req.body.purchases_conversion_value,
+    last_purchase: req.body.last_purchase,
     status: 1,
-    user_id: 1
-    //user_id : cookie
   }).then(() =>{
     res.redirect('/facebook_ads/')
   });

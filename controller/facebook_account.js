@@ -19,12 +19,11 @@ const shopifyAuth = asyncHandler(async (req, res, next) => {
 const addFacebookAccount = asyncHandler(async (req, res, next) => {
   console.log(req.body.URL)
   db.facebook_account.create({
-    url: req.body.URL,
-    api_key: req.body.APIKey,
-    api_secret: req.body.APISecret,
-    status: 1,
+    email: req.body.email,
+    password: req.body.password,
+    token: req.body.token,
+    facebook_ads_account_id: facebook_ads_account_id,
     user_id: 1
-    //user_id : cookie
   }).then(() =>{
     res.redirect('/facebook_account/')
   });
@@ -39,7 +38,6 @@ const listFacebookAccount = asyncHandler(async (req, res, next) => {
   db.facebook_account.findAll({
     where: {
       user_id: 1,
-      // id: cookie.id
     }
   }).then((facebook_account) =>{
     res.render('facebook_account', {
@@ -53,7 +51,6 @@ const listFacebookAccount = asyncHandler(async (req, res, next) => {
 // @route   PUT /facebook_account/:id
 // @access  Authenticate
 const updateFacebookAccount = asyncHandler(async (req, res, next) => {
-  console.log(req.params.id)
   console.log(req.body)
   db.facebook_account.findOne({
     where: {
@@ -62,6 +59,8 @@ const updateFacebookAccount = asyncHandler(async (req, res, next) => {
   }).then((facebook_account) =>{
     facebook_account.email = req.body.email
     facebook_account.password = req.body.password
+    facebook_account.token = req.body.token
+    facebook_account.facebook_ads_account_id = req.body.facebook_ads_account_id
     facebook_account.status = req.body.status
     facebook_account.save()
   }).then(() =>{
@@ -76,7 +75,6 @@ const deleteFacebookAccount = asyncHandler(async (req, res, next) => {
   db.facebook_account.findOne({
     where: {
       id: req.params.id
-      // id: cookie.id
     },
   }).then((facebook_account) =>{
     facebook_account.status = 0
@@ -93,7 +91,6 @@ const findOne = asyncHandler(async (req, res, next) => {
   db.facebook_account.findOne({
     where: {
       id: req.params.id
-      // id: cookie.id
     },
   }).then((facebook_account) =>{
     res.render('form', {
@@ -102,9 +99,11 @@ const findOne = asyncHandler(async (req, res, next) => {
       method: "post",
       action: "/facebook_account/"+ facebook_account.id, //post action for the form
       fields: [
-        {name:'Email',type:'text',property:'required',value:facebook_account.email},   
-        {name:'Password',type:'text',property:'required',value:facebook_account.password},  
-        {name:'Status',type:'text',property:'required',value:facebook_account.status}   
+        {name:'email',type:'text',property:'required',value:facebook_account.email},   
+        {name:'password',type:'text',property:'required',value:facebook_account.password},  
+        {name:'token',type:'text',property:'required',value:facebook_account.token},  
+        {name:'facebook_ads_account_id',type:'text',property:'required',value:facebook_account.facebook_ads_account_id},  
+        {name:'status',type:'text',property:'required',value:facebook_account.status}
       ]
     })
   });

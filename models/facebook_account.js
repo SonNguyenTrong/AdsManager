@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     facebook_ads_account_id: DataTypes.STRING,
+    token: DataTypes.STRING,
     status: DataTypes.TINYINT,
     createdAt: {
       allowNull: false,
