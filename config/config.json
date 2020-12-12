@@ -1,5 +1,6 @@
 {
   "development": {
+    "host": "localhost",
     "username": "tsng",
     "password": "trongson",
     "database": "adsmanager",
@@ -10,6 +11,14 @@
     "username": "tsng",
     "password": "trongson",
     "database": "adsmanager_test",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "production": {
+    "host": "adsmanager.cmfo7nnvlxux.us-east-2.rds.amazonaws.com",
+    "username": "tsng",
+    "password": "trongson",
+    "database": "adsmanager",
     "port": 3306,
     "dialect": "mysql"
   }

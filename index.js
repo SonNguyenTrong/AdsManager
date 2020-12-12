@@ -9,6 +9,7 @@ const dotenv = require('dotenv');
 const crypto = require('crypto');
 const cookie = require('cookie');
 const cookieParser = require('cookie-parser');
+const scheduler = require('./scheduler/scheduler');
 const port = process.env.PORT || 3000;
 
 dotenv.config({path: "./.env"});
@@ -45,6 +46,8 @@ const shopify = require('./routes/shopify')
 app.use('/dashboard/',dashboards)
 app.use('/shop/',shops)
 app.use('/shopify/',shopify)
+
+scheduler();
 
 const server = app.listen(port, ()=>{
   console.log('Server is running at port '+port)
