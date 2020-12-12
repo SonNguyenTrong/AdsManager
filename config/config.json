@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "tsng",
-    "password": "trongson",
-    "database": "adsmanager",
+    "username": "root",
+    "password": "Onelove1102",
+    "database": "ads",
     "port": 3306,
     "dialect": "mysql"
   },
