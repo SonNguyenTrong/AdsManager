@@ -6,6 +6,8 @@ const xss = require('xss-clean');
 const errorHandler = require('./middleware/error');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const crypto = require('crypto');
+const cookie = require('cookie');
 const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 3000;
 
@@ -39,9 +41,10 @@ app.use(xss());
 //Mount Route
 const dashboards = require('./routes/dashboard')
 const shops = require('./routes/shop')
+const shopify = require('./routes/shopify')
 app.use('/dashboard/',dashboards)
 app.use('/shop/',shops)
-
+app.use('/shopify/',shopify)
 
 const server = app.listen(port, ()=>{
   console.log('Server is running at port '+port)

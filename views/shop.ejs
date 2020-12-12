@@ -61,16 +61,19 @@
                                             <td><%= shop.url %></td>
                                             <td><%= shop.api_key %></td>
                                             <td><%= shop.api_secret %></td>
-                                            <td><% if (shop.status == 1) { %>
-                                                    <p style="color:green">active</p>
+                                            <td><% if (shop.authenticated == 1) { %>
+                                                    <p style="color:green">authenticated</p>
                                                 <% } else { %>
-                                                    <p style="color:red">deleted</p>
+                                                    <p style="color:red">unauthenticate</p>
                                                 <% } %>
                                             </td>
                                             <td>
                                                 <ul class="list-inline m-0">
                                                     <li class="list-inline-item">
                                                         <button class="btn btn-success btn-sm rounded-0" id='shopedit-<%- shop.id %>' type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <button class="btn btn-primary btn-sm rounded-0" id='shopauth-<%- shop.id %>' type="button" data-toggle="tooltip" data-placement="top" title="Auth"><i class="fas fa-sign-in-alt"></i></button>
                                                     </li>
                                                     <li class="list-inline-item">
                                                         <button class="btn btn-danger btn-sm rounded-0" id='shopdelete-<%- shop.id %>' type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
