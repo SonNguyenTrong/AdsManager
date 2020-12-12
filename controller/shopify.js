@@ -4,7 +4,7 @@ const db = require('../src/database/connection');
 const { put } = require('../routes/shop');
 
 // @desc    Authen shopify acc
-// @route   POST /auth/shop/?
+// @route   POST /shop/
 // @access  Authenticate
 const shopifyAuth = asyncHandler(async (req, res, next) => {
   res.status(200).json({
@@ -14,7 +14,7 @@ const shopifyAuth = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Add shopify_account link to user
-// @route   POST /auth/shop
+// @route   POST /shop
 // @access  Authenticate
 const addShop = asyncHandler(async (req, res, next) => {
   console.log(req.body.URL)

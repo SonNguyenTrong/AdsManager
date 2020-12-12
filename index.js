@@ -39,8 +39,8 @@ app.use(xss());
 //Mount Route
 const dashboards = require('./routes/dashboard')
 const shops = require('./routes/shop')
-app.use('/auth/',dashboards)
-app.use('/auth/shop/',shops)
+app.use('/dashboard/',dashboards)
+app.use('/shop/',shops)
 
 
 const server = app.listen(port, ()=>{
