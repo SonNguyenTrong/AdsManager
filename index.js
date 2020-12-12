@@ -45,6 +45,9 @@ app.use('/shop/',shops)
 const facebookAccount = require('./routes/facebook_account')
 app.use('/facebook_account/',facebookAccount)
 
+const facebookAds = require('./routes/facebook_ads')
+app.use('/facebook_ads/',facebookAds)
+
 const server = app.listen(port, ()=>{
   console.log('Server is running at port '+port)
 });

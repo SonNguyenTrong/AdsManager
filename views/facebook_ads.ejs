@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <%- include('partials/sidebar') %>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include('partials/topbar') %>  
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Facebook Ads</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Ad account</th>
+                                            <th>Campaign Name</th>
+                                            <th>Delivery</th>
+                                            <th>Budget</th>
+                                            <th>Amount Spent</th>
+                                            <th>CTR</th>
+                                            <th>CPM</th>
+                                            <th>Content Views</th>
+                                            <th>Cost per Content View</th>
+                                            <th>Checkouts Initiated</th>
+                                            <th>Cost per checkout Initiated</th>
+                                            <th>Purchases</th>
+                                            <th>Cost per purchase</th>
+                                            <th>Purchase ROAS</th>
+                                            <th>Purchases Conversion Value</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.forEach(function(facebook_ads) { %>
+                                        <tr id="tableno<%- facebook_ads.id %>">
+                                            <td><%= facebook_ads.id %></td>
+                                            <td><%= facebook_ads.facebook_account_id %></td>
+                                            <td><%= facebook_ads.campaign_name %></td>
+                                            <td><%= facebook_ads.delivery %></td>
+                                            <td><%= facebook_ads.budget %></td>
+                                            <td><%= facebook_ads.amount_spent %></td>
+                                            <td><%= facebook_ads.ctr %></td>
+                                            <td><%= facebook_ads.cpm %></td>
+                                            <td><%= facebook_ads.content_view %></td>
+                                            <td><%= facebook_ads.cost_per_content_view %></td>
+                                            <td><%= facebook_ads.checkouts_initiated %></td>
+                                            <td><%= facebook_ads.cost_per_checkout_initiated %></td>
+                                            <td><%= facebook_ads.purchases %></td>
+                                            <td><%= facebook_ads.cost_per_purchase %></td>
+                                            <td><%= facebook_ads.purchase_roas %></td>
+                                            <td><%= facebook_ads.purchases_conversion_value %></td>
+                                            <td><%= facebook_ads.last_purchase %></td>
+                                            <td><% if (facebook_ads.status == 1) { %>
+                                                    <p style="color:green">active</p>
+                                                <% } else { %>
+                                                    <p style="color:red">deleted</p>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline m-0">
+                                                    <li class="list-inline-item">
+                                                        <button data-id="<%- facebook_ads.id %>" class="btn btn-success btn-sm rounded-0" id='facebook_ads_edit-<%- facebook_ads.id %>' type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <button data-id="<%- facebook_ads.id %>" class="btn btn-danger btn-sm rounded-0" id='facebook_ads_delete-<%- facebook_ads.id %>' type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <%- include('partials/logout') %>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
+    <script src="/datatables.net/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/jquery.easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2/sb-admin-2.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="/js/facebook_ads.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const db = require('../src/database/connection');
+const { put } = require('../routes/facebook_ads');
+
+// @desc    Authen facebook ads
+// @route   POST /facebook_ads/?
+// @access  Authenticate
+const shopifyAuth = asyncHandler(async (req, res, next) => {
+  res.status(200).json({
+    success: true,
+    data: "done"
+  });
+});
+
+// @desc    Add facebook_ads
+// @route   POST /facebook_ads
+// @access  Authenticate
+const addFacebookAds = asyncHandler(async (req, res, next) => {
+  console.log(req.body.URL)
+  db.facebook_ads.create({
+    url: req.body.URL,
+    api_key: req.body.APIKey,
+    api_secret: req.body.APISecret,
+    status: 1,
+    user_id: 1
+    //user_id : cookie
+  }).then(() =>{
+    res.redirect('/facebook_ads/')
+  });
+
+});
+
+// @desc    List all facebook_ads owned by user
+// @route   GET /facebook_ads
+// @access  Authenticate
+const listFacebookAds = asyncHandler(async (req, res, next) => {
+  console.log(db.facebook_ads);
+  db.facebook_ads.findAll().then((facebook_ads) =>{
+    res.render('facebook_ads', {
+      title: 'Facebook Ads',
+      data: facebook_ads
+    })
+  })
+});
+
+// @desc    Update facebook_ads info
+// @route   PUT /facebook_ads/:id
+// @access  Authenticate
+const updateFacebookAds = asyncHandler(async (req, res, next) => {
+  console.log(req.params.id)
+  console.log(req.body)
+  db.facebook_ads.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then((facebook_ads) =>{
+    facebook_ads.email = req.body.email
+    facebook_ads.password = req.body.password
+    facebook_ads.status = req.body.status
+    facebook_ads.save()
+  }).then(() =>{
+    res.redirect('/facebook_ads/')
+  });
+});
+
+// @desc    Delete facebook_ads
+// @route   DELETE /facebook_ads/:id
+// @access  Authenticate
+const deleteFacebookAds = asyncHandler(async (req, res, next) => {
+  db.facebook_ads.findOne({
+    where: {
+      id: req.params.id
+      // id: cookie.id
+    },
+  }).then((facebook_ads) =>{
+    facebook_ads.status = 0
+    facebook_ads.save()
+  }).then(() =>{
+    res.status(200).json({
+      success: true,
+      data: "done"
+    })
+  });
+});
+
+const findOne = asyncHandler(async (req, res, next) => {
+  db.facebook_ads.findOne({
+    where: {
+      id: req.params.id
+      // id: cookie.id
+    },
+  }).then((facebook_ads) =>{
+    res.render('form', {
+      data: facebook_ads,
+      title: "UPDATE", //page title
+      method: "post",
+      action: "/facebook_ads/"+ facebook_ads.id, //post action for the form
+      fields: [
+        {name:'Email',type:'text',property:'required',value:facebook_ads.email},   
+        {name:'Password',type:'text',property:'required',value:facebook_ads.password},  
+        {name:'Status',type:'text',property:'required',value:facebook_ads.status}   
+      ]
+    })
+  });
+});
+
+module.exports = { shopifyAuth, addFacebookAds, listFacebookAds, updateFacebookAds, deleteFacebookAds, findOne };

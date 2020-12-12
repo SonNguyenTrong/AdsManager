@@ -1,26 +1,26 @@
 const router = require('express').Router();
 
 const {
-    shopifyAuth, addFacebookAccount, listFacebookAccount, updateFacebookAccount, deleteFacebookAccount, findOne
-} = require('../controller/facebook_account');
+    shopifyAuth, addFacebookAds, listFacebookAds, updateFacebookAds, deleteFacebookAds, findOne
+} = require('../controller/facebook_ads');
 
 // Todo: use middleware authen
 // router.use();
 
 router
   .route('/')
-  .get(listFacebookAccount)
+  .get(listFacebookAds)
     
 router
   .route('/:id')
   .get(findOne)
-  .post(updateFacebookAccount)
-  .delete(deleteFacebookAccount)
+  .post(updateFacebookAds)
+  .delete(deleteFacebookAds)
 
 router.get('/add', (req,res) =>{
   res.render('form', {
     title: "ADD", //page title
-    action: "/facebook_account/add", //post action for the form
+    action: "/facebook_ads/add", //post action for the form
     method: "post",
     fields: [
       {name:'URL',type:'text',property:'required'},   
@@ -30,6 +30,6 @@ router.get('/add', (req,res) =>{
   });
 })
 
-router.post('/add', addFacebookAccount)
+router.post('/add', addFacebookAds)
 
 module.exports = router;
