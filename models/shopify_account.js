@@ -3,34 +3,33 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class shopify_shop extends Model {
+  class shopify_account extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.shopify_account, {as: "shopify_account", foreignKey:"shopify_account_id"});
-      this.hasMany(models.shopify_stat, {as: "stats", foreignKey:"shop_id"})
+      this.belongsTo(models.user, {as: "user", foreignKey:"user_id"});
+      this.hasMany(models.shopify_shop, {as: "shopify_shops", foreignKey:"shopify_account_id"})
     }
   };
-  shopify_shop.init({
+  shopify_account.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    url: {
+    username: {
       type: DataTypes.STRING,
       unique: {
         args:true,
-        msg: 'Shop already exist!'
+        msg: 'Username already exist!'
       }
     },
-    api_key: DataTypes.STRING,
-    api_secret: DataTypes.STRING,
-    status: DataTypes.INTEGER,
+    password: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
     created_at: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -44,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     timestamps: false,
-    modelName: 'shopify_shop',
+    modelName: 'shopify_account',
   });
-  return shopify_shop;
+  return shopify_account;
 };

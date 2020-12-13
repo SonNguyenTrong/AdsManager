@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 const {
-    shopifyAuth, addShop, listShop, updateShop, deleteShop, findOne
-} = require('../controller/shopify');
+  addShop, listShop, updateShop, deleteShop, findOne
+} = require('../controller/shop');
 
 // Todo: use middleware authen
 // router.use();

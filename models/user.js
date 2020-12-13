@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.shopify_shop, {as: "shops", foreignKey:"user_id"});
+      this.hasMany(models.shopify_account, {as: "shopify_accounts", foreignKey:"user_id"});
     }
     static getSignedJwtToken = function() {
       return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     };
   };
   user.init({
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
     username: {
       type: DataTypes.STRING,
       unique: {

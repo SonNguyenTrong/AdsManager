@@ -2,7 +2,7 @@
 
 ## DB Migration Notes
 - Create migration/ model
-    - `$sequelize model:generate --name name-migration --atributes a:a,b:b `
+    - `$sequelize model:generate --name name-migration --attributes a:a,b:b `
 
 ## Configure
 - clone our project github
