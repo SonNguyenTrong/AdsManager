@@ -43,10 +43,19 @@ app.use(xss());
 const dashboards = require('./routes/dashboard')
 const shops = require('./routes/shop')
 const shopify = require('./routes/shopify')
-app.use('/dashboard/',dashboards)
+app.use('/',dashboards)
 app.use('/shop/',shops)
 app.use('/shopify/',shopify)
 
+<<<<<<< HEAD
+=======
+const facebookAccount = require('./routes/facebook_account')
+app.use('/facebook_account/',facebookAccount)
+
+const facebookAds = require('./routes/facebook_ads')
+app.use('/facebook_ads/',facebookAds)
+
+>>>>>>> master
 scheduler();
 
 const server = app.listen(port, ()=>{

@@ -46,7 +46,7 @@
                                     <% fields.forEach(function(field){ %>
                                     <div class="form-group">
 
-                                        <label><%= field.name %></label>
+                                        <label><%if (field.label) { %> <%= field.label %> <% } else { %> <%= field.name %> <% } %></label>
                                         <input type="<%= field.type %>" class="form-control form-control-user" 
                                             name="<%= field.name %>" <% if (field.property) { %> <%= field.property %> <% } %> 
                                             <% if (field.value) { %> value="<%= field.value %>" <% } %>>
