@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 const crypto = require('crypto');
 const cookie = require('cookie');
 const cookieParser = require('cookie-parser');
-const scheduler = require('./scheduler/scheduler'),
+const scheduler = require('./scheduler/scheduler');
 const port = process.env.PORT || 3000;
 
 dotenv.config({path: "./.env"});
@@ -43,7 +43,7 @@ app.use(xss());
 const dashboards = require('./routes/dashboard')
 const shops = require('./routes/shop')
 const shopify = require('./routes/shopify')
-app.use('/dashboard/',dashboards)
+app.use('/',dashboards)
 app.use('/shop/',shops)
 app.use('/shopify/',shopify)
 
