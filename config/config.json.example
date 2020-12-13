@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "tsng",
+    "password": "trongson",
+    "database": "adsmanager",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "tsng",
+    "password": "trongson",
+    "database": "adsmanager_test",
+    "port": 3306,
+    "dialect": "mysql"
+  }
+}
