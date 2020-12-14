@@ -51,7 +51,6 @@ const listShop = asyncHandler(async (req, res, next) => {
     })
   })
   .then((data) => {
-    console.log(data)
     var retData= [];
     data.forEach((acc) => {
       acc.shopify_shops.forEach((shop) =>{

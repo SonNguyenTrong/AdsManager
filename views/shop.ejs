@@ -58,8 +58,8 @@
                                     <tbody>
                                         <% data.forEach(function(shop) { %>
                                         <tr id="tableno<%- shop.id %>">
-                                            <td><%= shop.url %></td>
-                                            <td><%= shop.api_key %></td>
+                                            <td class="url"><%= shop.url %></td>
+                                            <td class="apikey"><%= shop.api_key %></td>
                                             <td><%= shop.api_secret %></td>
                                             <td><% if (shop.authenticated == 1) { %>
                                                     <p style="color:green">authenticated</p>

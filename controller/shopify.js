@@ -1,14 +1,15 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-require('dotenv')
 const db = require('../src/database/connection');
+const nonce = require("nonce")
+require('dotenv').config({path: "../.env"})
 
 // @desc    Authen shopify acc
 // @route   POST /shopify/:shop
 // @access  Authenticate
 const shopifyAuth = asyncHandler(async (req, res, next) => {
-  if (req.query.shop) {
-    const shop = req.query.shop;
+  if (req.query) {
+    const shop = req.query;
     const state = nonce();
     const scopes = 'read_products';
     const redirectUri = process.env.fwdAddress + '/shopify/callback';

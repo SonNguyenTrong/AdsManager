@@ -5,10 +5,10 @@ const asyncHandler = require('../middleware/async');
 // @route   GET /dashboard
 // @access  Authenticate
 const getDashboard = asyncHandler(async (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    data: "done"
-  });
+  // res.status(200).json({
+  //   success: true,
+  //   data: "done"
+  // });
 });
 
 // @desc    Toggle Camps
