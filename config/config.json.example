@@ -1,25 +1,21 @@
 {
-  "development": {
-    "host": "localhost",
-    "username": "tsng",
-    "password": "trongson",
-    "database": "adsmanager",
-    "port": 3306,
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "tsng",
-    "password": "trongson",
-    "database": "adsmanager_test",
-    "port": 3306,
-    "dialect": "mysql"
-  },
-  "production": {
-    "host": "adsmanager.cmfo7nnvlxux.us-east-2.rds.amazonaws.com",
-    "username": "tsng",
-    "password": "trongson",
-    "database": "adsmanager",
-    "port": 3306,
-    "dialect": "mysql"
+    "development": {
+      "host": "adsmanagerdb.cmfo7nnvlxux.us-east-2.rds.amazonaws.com",
+      "username": "tsng",
+      "password": "trongson",
+      "database": "adsmanager",
+      "port": 3306,
+      "dialect": "mysql",
+      "maxConcurrentQueries": 100,
+      "ssl": "Amazon RDS",
+      "pool": { "maxConnections": 5, "maxIdleTime": 30}
+    },
+    "test": {
+      "username": "tsng",
+      "password": "trongson",
+      "database": "adsmanager",
+      "port": 3306,
+      "dialect": "mysql"
+    }
   }
-}
+  

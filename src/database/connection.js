@@ -9,13 +9,14 @@ const config = require('../../config/config.json')[env];
 const modelPath = path.join(process.cwd(),'/models/')
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config.database, config.username, config.password,config);
 
 sequelize.authenticate()
   .then(() =>{
       console.log('connection establised')
   })
   .catch(err =>{
+      console.log(err)
       console.error('Unable to connect to the db')
   })
 
